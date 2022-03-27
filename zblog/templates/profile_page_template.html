@@ -1,0 +1,68 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<!-- landing begins -->
+<div class="container main-content">
+    <div class="row">
+        <h1 class="display-1 p-0 m-0">Wassup, <span class="fw-bold">{{user.username}}</span> </h1>
+        <h4 class="text-muted mb-5">Your recent activities will appear below 🤘</h4>
+
+        <div class="col-12 col-md-4">
+            <div class="sidebar-module sidebar-module-inset bg-white">
+                <h2 class="mb-3">Contact Dev 🎧</h2>
+
+                <div class="pb-3">
+                    <a href="https://www.github.com/P0intMaN">
+                        <i class="bi bi-github me-2"></i> GitHub
+                    </a>
+                </div>
+
+                <div class="pb-3">
+                    <a href="https://www.youtube.com/zbunker">
+                        <i class="bi bi-youtube me-2"></i> Youtube
+                    </a>
+                </div>
+
+                <div class="pb-3">
+                    <a href="mailto:pratheekastro3@gmail.com">
+                        <i class="bi bi-envelope-check-fill me-2"></i> Mail Me
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-8">
+            <div class="sidebar-module sidebar-module-inset bg-white">
+                <h2 class="mb-3">Your Bookmarks 📚</h2>
+
+                {% if user.bookmarked_posts|length == 0 %}
+                    <div class="pb-2">
+                        <h5>No bookmarked posts.</h5>
+                    </div>
+                {% else %}
+                    {% for post in user.bookmarked_posts %}
+                    <div class="pb-2">
+                        <a href="{{url_for('blog', url_slug=post.meta.url)}}">
+                            <h5>{{post.title}}</h5>
+                        </a>
+                    </div>
+                    {% endfor %}
+                
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-12 my-5">
+            <div class="sidebar-module sidebar-module-inset bg-dark">
+                <div class="d-flex">
+                    <h5 class="p-0 m-0 text-white align-self-center">You are logged in as <span class="text-success">{{ user.email }}</span></h5>
+
+                    <a href="{{url_for('logout')}}" class="button-no-style ms-auto btn btn-danger py-1 px-3 align-self-center me-1">logout</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- landing ends -->
+{% endblock %}

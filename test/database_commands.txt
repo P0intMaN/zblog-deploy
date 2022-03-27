@@ -1,0 +1,52 @@
+from zblog import db
+from zblog.models import User, Post, Tag
+
+db.create_all()
+
+print("############### ADDING CREDENTIALS ################")
+
+users_list = [('Pranav','pranavcosmos@gmail.com','123'), ('Pratheek','pratheekastro3@gmail.com','123'), ('Ayush','araj@gmail.com','123'), ('Shubham','sk907@gmail.com','123')]
+for u, e, p in users_list:
+    d = User(username=u, email=e, password=p)
+    db.session.add(d)
+    db.session.commit()
+
+posts_list = ['Manage your to-do list using python', 'socket programming in python', 'advanced visual studio code for python developers']
+for t in posts_list:
+    d = Post(title=t)
+    db.session.add(d)
+    db.session.commit()
+
+tags_list = ['python', 'django', 'projects', 'advanced', 'tools', 'web_dev', 'basics']
+for t in tags_list:
+    d = Tag(tag_name=t)
+    db.session.add(d)
+    db.session.commit()
+
+print("############### CREATING RELATIONSHIPS ################")
+
+pranav = User.query.filter_by(username='Pranav').first()
+post1 = Post.query.get(2)
+python = Tag.query.filter_by(tag_name='python').first()
+django = Tag.query.filter_by(tag_name='django').first()
+projects = Tag.query.filter_by(tag_name='projects').first()
+web_dev = Tag.query.filter_by(tag_name='web_dev').first()
+
+python.posts.append(post1)
+web_dev.posts.append(post1)
+projects.posts.append(post1)
+web_dev.posts.append(post1)
+
+db.session.commit()
+
+pranav.bookmarked_posts.append(post1)
+
+post2 = Post.query.get(1)
+
+pranav.bookmarked_posts.append(post2)
+ayush = User.query.filter_by(username="Ayush").first()
+ayush.bookmarked_posts.append(post1)
+db.session.commit()
+
+pranav.liked_posts.append(post2)
+db.session.commit()

@@ -1,0 +1,78 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<!-- landing begins -->
+<div class="container main-content">
+    <div class="row">
+        <h1 class="display-1 p-0 m-0 text-center">Welcome <span class="fw-bold">Back</span></h1>
+        <h1 class="h4 text-muted text-center">You are a step away. Log in to like posts and even bookmark them!</h1>
+
+        <div class="mx-auto mt-3" style="max-width:400px;">
+            <h1></h1>
+
+            <form method="POST" action="" class="mb-4 p-3 border-purple rounded" novalidate>
+                <!-- hidden csrf token -->
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.email.label(class="form-label") }}
+
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control is-invalid") }}
+
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    
+                        {% else %}
+                            {{ form.email(class="form-control") }}
+                    {% endif %}
+                    
+                </div>
+                
+                <div class="form-group">
+                    {{ form.password.label(class="form-label") }}
+
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control is-invalid") }}
+
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    
+                        {% else %}
+                            {{ form.password(class="form-control") }}
+                    {% endif %}
+                </div>
+                
+                <div class="form-check">
+                    {{ form.rem_me(class="form-check-input") }}
+                    {{ form.rem_me.label(class="form-check-label") }}
+                </div>
+
+                <p class="text-muted text-end mt-n2">
+                    <a class="form-link" href="#">Forgot Password?</a>
+                </p>
+
+                <div class="text-center">
+                    {{ form.submit(class="btn btn-primary btn-lg w-100 px-5 mt-2") }}
+                </div>
+            </form>
+            
+            <div class="d-flex text-muted small w-100 mx-auto mb-4">
+                <span class="flex-fill border-top-purple" style="margin-top: 1.1rem;"></span>
+                <p class="my-1 px-2">Don't Have an Account?</p>
+                <span class="flex-fill border-top-purple" style="margin-top: 1.1rem;"></span>
+            </div>
+
+            <div class="text-center alert alert-dark px-5 mt-2 py-2">
+                <a class="alert-link" href="{{url_for('join')}}">Create One Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- landing ends -->
+{% endblock %}

@@ -1,0 +1,141 @@
+{% extends "base_template.html" %}
+
+<!-- content begins -->
+{% block content %}
+<div class="container main-content">
+    <div class="row">
+        <h1 class="display-1 p-0 m-0">Welcome, <span class="fw-bold">Site Admin</span> </h1>
+        <h4 class="text-muted mb-5">What would you like to do today? 🕹️</h4>
+
+        <div class="col-12 col-md-6">
+            <div class="sidebar-module sidebar-module-inset bg-white">
+                <h2 class="mb-2">Add a New Tag 🏷️</h2>
+
+                <form method="POST" action="" class="p-3 pt-0" novalidate>
+                    <!-- hidden csrf token -->
+                    {{ form1.hidden_tag() }}
+                    {{ form1.identifier(hidden=True, value='FORM1') }}
+                    <div class="form-group">
+                        {{form1.new_tag_name.label(class="form-label fw-bold h5")}}
+
+                        {% if form1.new_tag_name.errors %}
+                            {{form1.new_tag_name(class="form-control is-invalid")}}
+
+                            <div class="invalid-feedback">
+                            {% for error in form1.new_tag_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                            </div>
+
+                        {% else %}
+                            {{ form1.new_tag_name(class="form-control") }}
+                        {% endif %}
+                    </div>
+                    
+
+                    <div class="text-center">
+                        {{ form1.submit(class="btn btn-success btn-lg w-100 px-5 mt-2") }}
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        
+        <div class="col-12 col-md-6">
+            <div class="sidebar-module sidebar-module-inset bg-white">
+                <h2 class="mb-2">Remove a Post 🚫</h2>
+
+                <form method="POST" action="" class="p-3 pt-0" novalidate>
+                    <!-- hidden csrf token -->
+                    {{ form2.hidden_tag() }}
+                    {{ form2.identifier(hidden=True, value='FORM2') }}
+                    <div class="form-group">
+                        {{form2.title.label(class="form-label fw-bold h5")}}
+
+                        {% if form2.title.errors %}
+                            {{form2.title(class="form-control is-invalid")}}
+
+                            <div class="invalid-feedback">
+                            {% for error in form2.title.errors %}
+                                {{ error }}
+                            {% endfor %}
+                            </div>
+
+                        {% else %}
+                            {{ form2.title(class="form-control") }}
+                        {% endif %}
+                    </div>
+                    
+
+                    <div class="text-center">
+                        {{ form2.submit(class="btn btn-danger btn-lg w-100 px-5 mt-2") }}
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="sidebar-module sidebar-module-inset bg-white">
+                <h2 class="text-center mb-3">Configure Post Meta ⚙️</h2>
+                
+                <form method="POST" action="" class="p-3 pt-0" novalidate>
+                     <!-- hidden csrf token -->
+                     {{ form3.hidden_tag() }}
+                     {{ form3.identifier(hidden=True, value='FORM3') }}
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                {{form3.post_title.label(class="form-label fw-bold h5")}}
+
+                                {% if form3.post_title.errors %}
+                                    {{form3.post_title(class="form-control is-invalid")}}
+
+                                    <div class="invalid-feedback">
+                                    {% for error in form3.post_title.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                    </div>
+
+                                {% else %}
+                                    {{ form3.post_title(class="form-control") }}
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-8">
+                            <div class="form-group">
+                                {{form3.tags.label(class="form-label fw-bold h5")}} <span class="text-muted fw-normal">(add lowercased, comma seperated tags without space)</span>
+
+                                {% if form3.tags.errors %}
+                                    {{form3.tags(class="form-control is-invalid")}}
+
+                                    <div class="invalid-feedback">
+                                    {% for error in form3.tags.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                    </div>
+
+                                {% else %}
+                                    {{ form3.tags(class="form-control") }}
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="text-center">
+                        {{ form3.submit(class="btn btn-primary btn-lg w-100 px-5 mt-2") }}
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!-- content ends -->
+

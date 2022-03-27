@@ -1,0 +1,24 @@
+{% extends "base_template.html" %} 
+
+{% block content %}
+<!-- landing begins -->
+<div class="container main-content">
+    <div class="sidebar-module sidebar-module-inset bg-white">
+        <h1 class="text-dark text-uppercase fw-bold mb-5 border-bottom">{{ tagname }} blogs</h1>
+
+        <div class="row">
+            <div class="col-12 mb-5">
+            {% if posts|length > 0 %}
+                {% for post in posts %}
+                <a href="{{ url_for('blog', url_slug=post.meta.url) }}" class="fw-bold alert-primary alert me-3">{{ post.title }}</a>
+                {% endfor %}
+            
+            {% else %}
+                <h4>No posts for this tag yet.</h4>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- landing ends -->
+{% endblock %}

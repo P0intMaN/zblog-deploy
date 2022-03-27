@@ -1,0 +1,107 @@
+from zblog import db
+from zblog.models import User, Post, Tag, PostMeta
+
+db.create_all()
+
+print("############### ADDING CREDENTIALS ################")
+
+users_list = [('Pranav','pranavcosmos@gmail.com','123'), ('Pratheek','pratheekastro3@gmail.com','123'), ('Ayush','araj@gmail.com','123'), ('Shubham','sk907@gmail.com','123')]
+for u, e, p in users_list:
+    d = User(username=u, email=e, password=p)
+    db.session.add(d)
+    db.session.commit()
+
+
+tags = ['python', 'web-dev', 'flask', 'hacking', 'wifi-hacking', 'dns']
+for tag in tags:
+    db_obj = Tag(tag_name=tag)
+    db.session.add(db_obj)
+    db.session.commit()
+
+
+print("############### ADDING POST EXAMPLE #################")
+print("""You published a post, now quickly go to the admins tab and configure the post
+         meta. Add post title, url, tags. 
+""")
+
+
+post1 = Post(title='Flask web dev')
+post1_url = PostMeta(url='the-fking-endpoint', post=post1)
+
+post1_tags = ['python', 'web-dev', 'flask']
+for tag in post1_tags:
+    tag_obj = Tag.query.filter_by(tag_name=tag).first()
+    tag_obj.posts.append(post1)
+
+db.session.commit()
+
+db.session.add_all([post1, post1_url])
+db.session.commit()
+
+pranav = User.query.filter_by(username='Pranav').first()
+
+post2 = Post(title='dns cache poisoning')
+post2_url = PostMeta(url='the-fking-endpoint2', post=post2)
+
+post2_tags = ['hacking', 'wifi-hacking', 'dns']
+for tag in post2_tags:
+    tag_obj = Tag.query.filter_by(tag_name=tag).first()
+    tag_obj.posts.append(post2)
+
+db.session.commit()
+
+db.session.add_all([post2, post2_url])
+db.session.commit()
+
+post3 = Post(title='SOME poisoning')
+post3_url = PostMeta(url='the-fking-endpoint3', post=post3)
+
+post3_tags = ['hacking', 'python']
+for tag in post3_tags:
+    tag_obj = Tag.query.filter_by(tag_name=tag).first()
+    tag_obj.posts.append(post3)
+
+db.session.commit()
+
+db.session.add_all([post3, post3_url])
+db.session.commit()
+
+print("################# PRANAV LIKES POST1 AND POST3 #########################")
+post1 = Post.query.filter_by(title='Flask web dev').first()
+post3 = Post.query.filter_by(title='SOME poisoning').first()
+pranav.liked_posts.append(post1)
+pranav.liked_posts.append(post3)
+
+db.session.commit()
+
+
+print("################ COMPLEX QUERY #################")
+pranav.liked_posts[0].meta.url 
+
+post2 = Post.query.filter_by(title='ns cache poisoning')
+post2.meta.likes = 23
+post3.meta.likes = 12
+post1.meta.likes = 7
+
+post1.meta.url = 'flask-web-dev'
+post2.meta.url = 'dns-cache-poisoning'
+post3.meta.url = 'some-poisoning'
+db.session.commit()
+
+post4 = Post(title='test post for deletion')
+post4_url = PostMeta(url='test-post-for-deletion', post=post4)
+
+post4_tags = ['python']
+for tag in post4_tags:
+    tag_obj = Tag.query.filter_by(tag_name=tag).first()
+    tag_obj.posts.append(post1)
+
+db.session.commit()
+
+db.session.add_all([post4, post4_url])
+db.session.commit()
+
+admin = User(username='admin', email='admin@zblog.com', password='123')
+db.session.add(admin)
+db.session.commit()
+

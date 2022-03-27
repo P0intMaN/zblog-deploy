@@ -1,0 +1,333 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<!-- landing begins -->
+<div class="container main-content">
+    <div class="row">
+        <!-- blog section beings -->
+        <div class="col-md-12 col-lg-11 mb-5">
+            <div class="sidebar-module sidebar-module-inset bg-white">
+                <!-- image -->
+                <div class="embed-responsive embed-responsive-16by9">
+                    <img src="../static/img/Screenshot (12).png" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit:contain;">
+                </div>
+
+                <!-- post meta -->
+                <h1 class="pt-3 fw-bold text-capitalize text-center h1">this is the post title: how to write a perfect blog</h1>
+                <div class="text-muted text-center">23 July, 2020</div>
+                <div class="text-center mb-5">
+                    <small>
+                        {% for tag in tags %}
+                        <a href="{{ url_for('tag', tagname=tag.tag_name) }}" class="badge blue-bg-secondary">{{ tag.tag_name }}</a>
+                        {% endfor %}
+                    </small>
+                </div>
+
+                <!-- a good blog has a nice introductory para -->
+                <p>
+                    A good blog has a nice introductory para. It is meant to capture
+                    the attention of the readers. HTML has been curated just for these
+                    purposes, although many people undersee it. In this post, I will 
+                    walk you through how to write a proper blog with HTML and Bootstrap 
+                    classes. Remember, to give your user an awesome experience, you must
+                    invest some time styling your blogs. 
+                </p>
+
+                <!-- a blog post is divided into multiple sections, each having a title -->
+                <div class="parent-section py-3">
+                    <!-- section title -->
+                    <h2 class="fw-bold">I am a title</h2>
+
+                    <p>
+                        A blog post is divided into multiple sections, each having a title.
+                        Just now, I created a sample title. Usually or I should say very 
+                        frequently, a blog post contains multiple paras. You can do that
+                        by wrapping your contents in <code>&lt;p&gt;</code> tag. I am
+                        demonstrating this below for your convenience.
+                    </p>
+
+                    <p>
+                        Okay, so I am the second paragraph. Now paragraphs are great! But
+                        sometimes you can't explain a particular concept in a single para.
+                        Therefore, we create a sub-section inside the parent section. Let's
+                        go ahead and do that.
+                    </p>
+
+                    <!-- A sub-section inside parent-section -->
+                    <div class="sub-section pt-3">
+                        <!-- sub-title -->
+                        <h3>I am a sub-title</h3>
+                        
+                        <p>
+                            This is a paragraph meant to explain a particular concept.
+                            Now that you are familiar with the basic format of writing a blog,
+                            let's go ahead and look at the formatting options.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="parent-section py-3">
+                    <h2 class="fw-bold">Formatting the blog</h2>
+
+                    <p>
+                        We will keep using the above mentioned hierarchy to write the blogs.
+                        Okay, using bootstrap helps us a lot. Notice how the above paras were
+                        so dull and monotonic. That's because we never introduced text-styling.
+                        This section will cover some necessary formatting options.
+                    </p>
+
+                    <div class="sub-section pt-3">
+                        <h3>Text-formatting options</h3>
+
+                        <!-- strong -->
+                        <p>
+                            I am a <strong>strong text.</strong>
+                        </p>
+
+                        <!-- italics -->
+                        <p>
+                            I am an <i>italicised text.</i>
+                        </p>
+                        
+                        <!-- unique paragraph -->
+                        <p class="lead">
+                            Notice something different? I am a paragraph with a 
+                            bootstrap class <strong>lead</strong>. Used to make the paragraph stand out!
+                        </p>
+
+                        <!-- highlight -->
+                        <p>
+                            I am a <mark>highlighted text.</i>
+                        </p>
+
+                        <!-- link -->
+                        <p>
+                            I am a <a href="#">link</a>.
+                            Don't know HTML much? Checkout this <a href="https://www.w3schools.com/html/">awesome resource!</a>
+                        </p>
+
+                        <!-- code -->
+                        <p>
+                            I am a <code>code snippet. Look at my font. Kinda "cody" right?</code>.
+                        </p>
+                        
+                        <!-- muted text -->
+                        <p>
+                            I am a <span class="text-muted">muted text.</span>.
+                        </p>
+                        
+                    </div>
+
+                    <div class="sub-section pt-3">
+                        <h3>Some extra formattings</h3>
+
+                        <!-- blockquote example -->
+                        <p>
+                            There comes many cases where you'd want to quote something in 
+                            your blog say, from a site or documentation. You can do that 
+                            by using the <code>&lt;blockquote&gt;</code> tag. I've custom
+                            designed it for you. <span class="text-muted">If you want it to be of different style or
+                            color, go ahead and change it in the <code>main.css</code> file
+                            anytime!</span>
+
+                            <!-- blockquote -->
+                            <blockquote class="text-muted">
+                                In the face of ambiguity, refuse the temptation to guess.
+                                There should be one-- and preferably only one --obvious way to do it.
+                                Although that way may not be obvious at first unless you're Dutch.
+                                Now is better than never. <a href="https://www.python.org/dev/peps/pep-0020/#id2">( Source )</a>
+                            </blockquote>
+                        </p>
+
+                        <p>
+                            Now lets grab the attention of the readers shall we? If you want to display
+                            something with super emphasis, make sure to display them with a different 
+                            background color. Like below:
+
+                            <div class="sidebar-module sidebar-module-inset blue-bg-secondary fw-bold">
+                                Hey readers! Seems like you are enjoying the blog so far. If you'd like to 
+                                give a feedback, then be sure to drop it at <a href="mailto:abcd@gmail.com">abcd@gmail.com</a>.
+                                Would love to hear from you!
+                            </div>
+
+                            Perhaps a different color?
+
+                            <div class="sidebar-module sidebar-module-inset purple-bg-secondary fw-bold">
+                                Hey readers! Seems like you are enjoying the blog so far. If you'd like to 
+                                give a feedback, then be sure to drop it at <a href="mailto:abcd@gmail.com">abcd@gmail.com</a>.
+                                Would love to hear from you!
+                            </div>
+                        </p>
+
+                    </div>
+
+                    <div class="sub-section pt-3">
+                        <h3>Some necessary HTML elements</h3>
+
+                        <!-- lists -->
+                        <p> <strong>Lists example:</strong>
+                            <ul>
+                                <li>List itme1</li>
+                                <li>List itme2</li>
+                                <li>List itme3</li>
+                                <!-- sublist (nested list) -->
+                                <ul>
+                                    <li>A sublist itme1</li>
+                                    <li>A sublist itme2</li>
+                                    <li>A sublist itme3</li>
+                                </ul>
+                                
+                            </ul>
+                        </p>
+                        
+                        <!-- tables example -->
+                        <p> <strong>Tables exmple:</strong>
+                            <table>
+                                <tr>
+                                    <th>Header1 </th>
+                                    <th>Header2</th>
+                                    <th>Header3</th>
+                                </tr>
+                                <tr>
+                                    <td>row1</td>
+                                    <td>row1</td>
+                                    <td>row1</td>
+                                </tr>
+                                <tr>
+                                    <td>row2</td>
+                                    <td>row2</td>
+                                    <td>row2</td>
+                                </tr>
+                                <tr>
+                                    <td>row3</td>
+                                    <td>row3</td>
+                                    <td>row3</td>
+                                </tr>
+                                </table>
+                                
+                        </p>
+
+                        <!-- images example -->
+                        <p> <strong>Images example: &nbsp;</strong>
+                            What is a blog without images right?
+                            Let's go ahead and add an image. Note that you can add images
+                            of any size. I've made it completely responsive and will be 
+                            viewed across any devices without any problem. <strong>Just 
+                            wrap them as shown in the source code along with the
+                            classes and you are done!</strong>
+                        </p>
+
+                        <!-- image: you can put literally img of any size. It will manage the image for you -->
+                        <div class="embed-responsive embed-responsive-16by9 mb-3">
+                            <img src="https://via.placeholder.com/960x720" style="object-fit:contain;" alt="" class="embed-responsive-item">
+                        </div>
+
+                        <p>
+                            That's it folks! These are some of the ways in which you can 
+                            style your blog posts. Now, that doesn't mean this is the limit.
+                            The control is completely upto you. You can go ahead and experiment
+                            with awesome color combinations and perhaps develop your own 
+                            blogging patterns. <strong>Choose what fits you the best!</strong> 
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+            
+        </div>
+        <!-- blog section ends -->
+        <!-- like section begins -->
+        {% if user.is_authenticated %}
+        <div class="col-12 col-lg-1">
+            <div class="sidebar-sticky">
+                <div class="sidebar-module sidebar-module-inset text-center">
+                    <div class="py-4">
+                        {% if user in post.liked_by%}
+                        <button onclick="likeToggler(this)" class="p-0 bi bi-hand-thumbs-up-fill blog-page icon icon-like toggle"></button>
+                        {% else %}
+                        <button onclick="likeToggler(this)" class="p-0 bi bi-hand-thumbs-up blog-page icon icon-like no-toggle"></button>
+                        {% endif %}
+                        <div class="p-0 text-muted" style="font-size: 20px;" id="likes">{{likes}}</div>
+                    </div>
+                    
+                    <div class="py-4">
+                        {% if user in post.bookmarked_by %}
+                        <button onclick="bookmarkToggler(this)" class="p-0 bi bi-bookmark-plus-fill blog-page icon icon-bookmark toggle"></button>
+                        {% else %}
+                        <button onclick="bookmarkToggler(this)" class="p-0 bi bi-bookmark-plus blog-page icon icon-bookmark no-toggle"></button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <!-- like section ends -->
+
+    </div>
+</div>
+<!-- landing ends -->
+
+<!-- Scripts -->
+<!-- Togglers script -->
+<script>
+    function likeToggler(x){
+        if(x.classList.contains("no-toggle")){
+            x.classList.remove("bi-hand-thumbs-up", "no-toggle")
+            x.classList.add("bi-hand-thumbs-up-fill", "toggle")
+
+            $.ajax(
+                {
+                    type: "GET",
+                    url: '/add_like/{{post.title}}',
+                    success: function(updated_data){
+                        $('#likes').html(updated_data)
+                    }
+                }
+            )
+        }
+        
+        else if(x.classList.contains("toggle")){
+            x.classList.remove("bi-hand-thumbs-up-fill", "toggle")
+            x.classList.add("bi-hand-thumbs-up", "no-toggle")
+
+            $.ajax(
+                {
+                    type: "GET",
+                    url: '/remove_like/{{post.title}}',
+                    success: function(updated_data){
+                        $('#likes').html(updated_data)
+                    }
+                }
+            )
+        }
+    }
+
+    function bookmarkToggler(x){
+        if(x.classList.contains("no-toggle")){
+            x.classList.remove("bi-bookmark-plus", "no-toggle")
+            x.classList.add("bi-bookmark-plus-fill", "toggle")
+
+            $.ajax(
+                {
+                    type: "GET",
+                    url: '/add_bookmark/{{post.title}}',
+                }
+            )
+        }
+        
+        else if(x.classList.contains("toggle")){
+            x.classList.remove("bi-bookmark-plus-fill", "toggle")
+            x.classList.add("bi-bookmark-plus", "no-toggle")
+
+            $.ajax(
+                {
+                    type: "GET",
+                    url: '/remove_bookmark/{{post.title}}',
+                }
+            )
+        }
+    }
+</script>
+{% endblock %}

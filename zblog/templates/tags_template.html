@@ -1,0 +1,19 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<!-- landing begins -->
+<div class="container main-content">
+    <div class="sidebar-module sidebar-module-inset bg-white">
+        <h1 class="text-dark text-uppercase fw-bold">tags</h1>
+
+        <div class="tags-section p-3 ps-0">
+            {% for tag in tags %}
+            <div class="big-tag d-inline-block me-2 py-1 px-2 h3 rounded">
+                <a href="{{ url_for('tag', tagname=tag.tag_name) }}" style="background-color: transparent; border: 0;" class="text-white p-0">#{{ tag.tag_name }}</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- landing ends -->
+{% endblock %}
